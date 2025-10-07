@@ -21,7 +21,7 @@ const HeroSection = () => {
             Our goal is to turn your ideas into digital experiences that truly
             make an impact.
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex gap-4 justify-center pb-10">
             <button className="btn btn-outline">
               <img src={playStoreLogo} alt="" /> Google Play
             </button>
