@@ -6,9 +6,9 @@ const AppsDataCard = ({ app }) => {
   const { title, downloads, ratingAvg, image } = app;
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-md p-4 flex justify-between flex-col gap-3 hover:scale-105 transition ease-in-out">
-      <figure className="h-100 overflow-hidden ">
+      <figure className="aspect-[3/4] overflow-hidden ">
         <img
-          className="w-full rounded-lg object-cover"
+          className="w-full h-full rounded-lg object-cover"
           src={image}
           alt={title}
         />
