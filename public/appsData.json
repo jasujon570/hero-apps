@@ -1,0 +1,92 @@
+[
+  {
+    "image": "https://play-lh.googleusercontent.com/NWRVVF6zXvmcqspJwdFOKcQG6OlsNwpMOxED_DgB6B2BBDeWwAeWZKZxGhgqU0LQVJU",
+    "title": "Forest: Focus for Productivity",
+    "companyName": "SeekrTech",
+    "id": 1,
+    "description": "Stay focused and be productive by planting trees. Whenever you stay off your phone, your forest grows.",
+    "size": 28,
+    "reviews": 785000,
+    "ratingAvg": 4.6,
+    "downloads": "10M",
+    "ratings": [
+      { "name": "1 star", "count": 5000 },
+      { "name": "2 star", "count": 8000 },
+      { "name": "3 star", "count": 19000 },
+      { "name": "4 star", "count": 120000 },
+      { "name": "5 star", "count": 650000 }
+    ]
+  },
+  {
+    "image": "https://play-lh.googleusercontent.com/kfpAxLPDEfpr3-uMNfHy8Xf4EmQZ-GvqhnOlytzM90j-3phnjAuHVreoo_ldEA8QGA=w240-h480-rw",
+    "title": "Morning Habits - Daily Routine",
+    "companyName": "DailySpark Co.",
+    "id": 2,
+    "description": "Start your day right with healthy morning routines. Build positive habits and track your daily goals easily.",
+    "size": 35,
+    "reviews": 1200,
+    "ratingAvg": 4.5,
+    "downloads": "5M",
+    "ratings": [
+      { "name": "1 star", "count": 30 },
+      { "name": "2 star", "count": 25 },
+      { "name": "3 star", "count": 60 },
+      { "name": "4 star", "count": 240 },
+      { "name": "5 star", "count": 365 }
+    ]
+  },
+  {
+    "image": "https://play-lh.googleusercontent.com/k0p0PlV3iitTUJaBk4P2NWiMHcAKrI7gB0ap7b9sIVCcKvE9RT6MTLf1Fr5oOUMQ1nFc=w240-h480-rw",
+    "title": "FLIP - Focus Timer for Study",
+    "companyName": "RinaSoft",
+    "id": 3,
+    "description": "A Pomodoro-style timer that helps students stay focused and manage their study sessions efficiently.",
+    "size": 22,
+    "reviews": 37700,
+    "ratingAvg": 4.0,
+    "downloads": "9M",
+    "ratings": [
+      { "name": "1 star", "count": 400 },
+      { "name": "2 star", "count": 600 },
+      { "name": "3 star", "count": 2000 },
+      { "name": "4 star", "count": 9000 },
+      { "name": "5 star", "count": 25000 }
+    ]
+  },
+  {
+    "image": "https://play-lh.googleusercontent.com/aDtdv5ZEOWlJjqi2UfoByEGcc8KVjUUlkZTrzdBoGVPGCqSaPVcj_JwUHZ-cK8lCAQ=w240-h480-rw",
+    "title": "Focus Meter - Study Tracker",
+    "companyName": "Focus Labs",
+    "id": 4,
+    "description": "Track your focus sessions and analyze your study performance with insightful charts and stats.",
+    "size": 40,
+    "reviews": 15600,
+    "ratingAvg": 4.3,
+    "downloads": "7M",
+    "ratings": [
+      { "name": "1 star", "count": 300 },
+      { "name": "2 star", "count": 500 },
+      { "name": "3 star", "count": 1200 },
+      { "name": "4 star", "count": 4000 },
+      { "name": "5 star", "count": 9600 }
+    ]
+  },
+  {
+    "image": "https://play-lh.googleusercontent.com/gpZRdi4FvboZjKiIu-L3VXsNVwBp4PnnDluvxYtVM6AAK8lkPAWHlIWo8atqm8abwCE=w240-h480-rw",
+    "title": "Deep Work Timer",
+    "companyName": "Mind Focus Studio",
+    "id": 5,
+    "description": "Designed for deep work lovers — stay distraction-free and boost productivity using smart time blocks.",
+    "size": 33,
+    "reviews": 8900,
+    "ratingAvg": 4.7,
+    "downloads": "6M",
+    "ratings": [
+      { "name": "1 star", "count": 200 },
+      { "name": "2 star", "count": 350 },
+      { "name": "3 star", "count": 800 },
+      { "name": "4 star", "count": 2500 },
+      { "name": "5 star", "count": 5100 }
+    ]
+  }
+]
