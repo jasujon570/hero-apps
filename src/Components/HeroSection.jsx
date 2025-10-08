@@ -2,6 +2,7 @@ import playStoreLogo from "../assets/playstore.png";
 import appStoreLogo from "../assets/appstore.png";
 import heroImg from "../assets/hero.png";
 import Container from "./Container";
+import { Link } from "react-router";
 
 const HeroSection = () => {
   return (
@@ -22,12 +23,18 @@ const HeroSection = () => {
             make an impact.
           </p>
           <div className="flex gap-4 justify-center pb-10">
-            <button className="btn btn-outline">
-              <img src={playStoreLogo} alt="" /> Google Play
-            </button>
-            <button className="btn btn-outline">
-              <img src={appStoreLogo} alt="" /> App Store
-            </button>
+            <Link to="https://play.google.com/store/">
+              <button className="btn btn-outline">
+                <img src={playStoreLogo} alt="" />
+                Google Play
+              </button>
+            </Link>
+            <Link to="https://www.apple.com/app-store/">
+              <button className="btn btn-outline">
+                <img src={appStoreLogo} alt="" />
+                App Store
+              </button>
+            </Link>
           </div>
         </div>
 

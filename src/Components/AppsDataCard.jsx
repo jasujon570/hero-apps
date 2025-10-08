@@ -1,11 +1,16 @@
+import { Link } from "react-router-dom";
 import downloadIcon from "../assets/icon-downloads.png";
 import starIcon from "../assets/icon-ratings.png";
 
 const AppsDataCard = ({ app }) => {
   const roundRating = Math.round(app.ratingAvg);
-  const { title, downloads, ratingAvg, image } = app;
+  const { title, downloads, image, id } = app;
+
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-md p-4 flex justify-between flex-col gap-3 hover:scale-105 transition ease-in-out">
+    <Link
+      to={`/app-details/${id}`}
+      className="bg-white border border-gray-200 rounded-lg shadow-md p-4 flex justify-between flex-col gap-3 hover:scale-105 transition ease-in-out"
+    >
       <figure className="aspect-[3/4] overflow-hidden ">
         <img
           className="w-full h-full rounded-lg object-cover"
@@ -33,7 +38,7 @@ const AppsDataCard = ({ app }) => {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
