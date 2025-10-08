@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router";
 import logoImg from "../assets/logo.png";
-import GithubLogo from '../assets/githublogo.png'
+import GithubLogo from "../assets/githublogo.png";
 
 const Navbar = () => {
   return (
@@ -29,36 +29,87 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <NavLink to='/'>Home</NavLink>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "text-[#632ee3] underline underline-offset-4" : ""
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to='/apps'>Apps</NavLink>
+              <NavLink
+                to="/apps"
+                className={({ isActive }) =>
+                  isActive ? "text-[#632ee3] underline underline-offset-4" : ""
+                }
+              >
+                Apps
+              </NavLink>
             </li>
             <li>
-              <NavLink to='/installedapps'>Installation</NavLink>
+              <NavLink
+                to="/installedapps"
+                className={({ isActive }) =>
+                  isActive ? "text-[#632ee3] underline underline-offset-4" : ""
+                }
+              >
+                Installation
+              </NavLink>
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl bg-gradient-to-r from-[#632ee3] to-[#9f62f2] bg-clip-text text-transparent font-bold">
+        <Link
+          to="/"
+          className="btn btn-ghost text-xl bg-gradient-to-r from-[#632ee3] to-[#9f62f2] bg-clip-text text-transparent font-bold"
+        >
           <img src={logoImg} className="w-[40px]" alt="" />
           HERO.IO
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 font-medium">
           <li>
-              <NavLink to='/'>Home</NavLink>
-            </li>
-            <li>
-              <NavLink to='/apps'>Apps</NavLink>
-            </li>
-            <li>
-              <NavLink to='/installedapps'>Installation</NavLink>
-            </li>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-[#632ee3] underline underline-offset-4" : ""
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/apps"
+              className={({ isActive }) =>
+                isActive ? "text-[#632ee3] underline underline-offset-4" : ""
+              }
+            >
+              Apps
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/installedapps"
+              className={({ isActive }) =>
+                isActive ? "text-[#632ee3] underline underline-offset-4" : ""
+              }
+            >
+              Installation
+            </NavLink>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn bg-gradient-to-r from-[#632ee3] to-[#9f62f2] font-semibold text-white"><img src={GithubLogo} alt="" />Contribute</Link>
+        <Link
+          to="https://github.com/jasujon570"
+          className="btn bg-gradient-to-r from-[#632ee3] to-[#9f62f2] font-semibold text-white"
+        >
+          <img src={GithubLogo} alt="" />
+          Contribute
+        </Link>
       </div>
     </div>
   );
