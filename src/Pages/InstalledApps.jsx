@@ -4,7 +4,6 @@ import { toast } from "react-hot-toast";
 import useApp from "../Hooks/useApp";
 import InstalledAppCard from "../Components/InstalledAppCard";
 
-// LocalStorage Helper Functions
 const getInstalledAppIds = () => {
   const installed = localStorage.getItem("installedApps");
   return installed ? JSON.parse(installed) : [];
@@ -15,14 +14,13 @@ const removeAppFromLocalStorage = (appId) => {
   localStorage.setItem("installedApps", JSON.stringify(installedApps));
 };
 
-// Download string to number converter
 const convertDownloadsToNumber = (downloadStr) => {
-  if (typeof downloadStr !== 'string') return 0;
+  if (typeof downloadStr !== "string") return 0;
   const upperCaseStr = downloadStr.toUpperCase();
-  if (upperCaseStr.endsWith('M')) {
+  if (upperCaseStr.endsWith("M")) {
     return parseFloat(upperCaseStr) * 1000000;
   }
-  if (upperCaseStr.endsWith('K')) {
+  if (upperCaseStr.endsWith("K")) {
     return parseFloat(upperCaseStr) * 1000;
   }
   return parseFloat(downloadStr);
@@ -49,14 +47,18 @@ const InstalledApps = () => {
     toast.success(`${appTitle} has been uninstalled.`);
   };
 
-  // Sorting logic with the fix
   const sortedApps = [...installedApps].sort((a, b) => {
     if (sortOrder === "high-low") {
-      return convertDownloadsToNumber(b.downloads) - convertDownloadsToNumber(a.downloads);
+      return (
+        convertDownloadsToNumber(b.downloads) -
+        convertDownloadsToNumber(a.downloads)
+      );
     }
     if (sortOrder === "low-high") {
-      // The typo is fixed here
-      return convertDownloadsToNumber(a.downloads) - convertDownloadsToNumber(b.downloads);
+      return (
+        convertDownloadsToNumber(a.downloads) -
+        convertDownloadsToNumber(b.downloads)
+      );
     }
     return 0;
   });
@@ -68,7 +70,9 @@ const InstalledApps = () => {
   return (
     <div className="max-w-4xl mx-auto py-12 px-4">
       <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold text-gray-800">Your Installed Apps</h1>
+        <h1 className="text-4xl font-bold text-gray-800">
+          Your Installed Apps
+        </h1>
         <p className="text-gray-500 mt-2">
           Explore All Trending Apps on the Market developed by us
         </p>
@@ -78,13 +82,15 @@ const InstalledApps = () => {
         <span className="font-semibold text-gray-700">
           {sortedApps.length} Apps Found
         </span>
-        
+
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
           className="select select-bordered select-sm"
         >
-          <option value="" disabled>Sort By Downloads</option>
+          <option value="" disabled>
+            Sort By Downloads
+          </option>
           <option value="high-low">High-Low</option>
           <option value="low-high">Low-High</option>
         </select>

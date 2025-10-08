@@ -1,6 +1,6 @@
 
 import appError from '../assets/App-Error.png'
-import { Link } from 'react-router-dom'; // Assuming you use React Router for navigation
+import { Link } from 'react-router-dom';
 
 const NotFound = ({onGoBack}) => {
   return (
