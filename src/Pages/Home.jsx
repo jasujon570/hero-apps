@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import HeroSection from "../Components/HeroSection";
 import AppsDataCard from "../Components/AppsDataCard";
+import useApp from "../Hooks/useApp";
 
 const Home = () => {
-  const apps = useLoaderData();
-  const topApps = apps.slice(0,8)
+  const { apps, loading, error } = useApp();
+  const topApps = apps.slice(0, 8);
   return (
     <div>
       <HeroSection />
@@ -21,9 +22,12 @@ const Home = () => {
           ))}
         </div>
         <div className="text-center">
-          <button className="btn bg-linear-to-r from-[#632EE3] to-[#9F62F2] font-semibold text-white px-10">Show All</button>
+          <Link to='/apps'>
+            <button className="btn bg-linear-to-r from-[#632EE3] to-[#9F62F2] font-semibold text-white px-10">
+              Show All
+            </button>
+          </Link>
         </div>
-        
       </div>
     </div>
   );
