@@ -1,8 +1,20 @@
+import { useState } from "react";
 import { useParams, useLoaderData } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+
 import starIcon from "../assets/icon-ratings.png";
 import reviewIcon from "../assets/icon-review.png";
 import downloadIcon from "../assets/icon-downloads.png";
 import Container from "./Container";
+import ErrorPage from "../Pages/ErrorPage";
 
 const formatNumber = (num) => {
   if (num >= 1000000)
@@ -11,17 +23,26 @@ const formatNumber = (num) => {
   return num;
 };
 
-const processRatings = (ratings) => {
-  return ratings.sort((a, b) => {
-    const starA = parseInt(a.name.split(" ")[0]);
-    const starB = parseInt(b.name.split(" ")[0]);
-    return starB - starA;
-  });
+const processRatingsForChart = (ratings) => {
+  return ratings
+    .map((r) => ({
+      name: `${r.name.split(" ")[0]} star`,
+      count: r.count,
+    }))
+    .sort((a, b) => parseInt(b.name) - parseInt(a.name));
 };
 
-const calculateBarWidth = (count, maxCount) => {
-  if (maxCount === 0) return "0%";
-  return `${(count / maxCount) * 100}%`;
+const getInstalledApps = () => {
+  const installed = localStorage.getItem("installedApps");
+  return installed ? JSON.parse(installed) : [];
+};
+
+const addAppToLocalStorage = (appId) => {
+  const installedApps = getInstalledApps();
+  if (!installedApps.includes(appId)) {
+    const newInstalledApps = [...installedApps, appId];
+    localStorage.setItem("installedApps", JSON.stringify(newInstalledApps));
+  }
 };
 
 const AppDetailsPage = () => {
@@ -29,32 +50,40 @@ const AppDetailsPage = () => {
   const allAppsData = Array.isArray(loaderData) ? loaderData : [];
 
   const { id } = useParams();
-
   const app = allAppsData.find((app) => app.id === parseInt(id));
+
+  const [isInstalled, setIsInstalled] = useState(() => {
+    const installedApps = getInstalledApps();
+    return installedApps.includes(parseInt(id));
+  });
+
+  const handleInstall = () => {
+    setIsInstalled(true);
+    addAppToLocalStorage(app.id);
+    toast.success(`${app.title} has been installed successfully!`);
+  };
 
   if (!app) {
     return (
       <div className="text-center py-20 text-xl font-bold">
-        Loading app data... or App Not Found!
+        <ErrorPage />
       </div>
     );
   }
 
-  const processedRatings = processRatings(app.ratings);
-  const maxRatingCount = Math.max(...processedRatings.map((r) => r.count));
+  const chartData = processRatingsForChart(app.ratings);
   const totalReviews = app.reviews;
 
   return (
     <div className="bg-[#F5F5F5] w-screen relative left-1/2 -translate-x-1/2">
       <Container>
         <div className="mx-auto p-4 md:p-8 max-w-screen-2xl">
-          <header className="flex items-start gap-6 border-b pb-8 mb-8">
+          <header className="flex flex-col md:flex-row items-start gap-6 border-b pb-8 mb-8">
             <img
               src={app.image}
               alt={app.title}
-              className="w-full h-full sm:w-32 sm:h-32 object-contain rounded-2xl p-4 bg-gray-100"
+              className="w-24 h-24 sm:w-32 sm:h-32 object-contain rounded-2xl p-4 bg-gray-100"
             />
-
             <div className="flex flex-col gap-2 w-full">
               <div className="border-b">
                 <h1 className="text-3xl font-bold text-gray-900 leading-snug">
@@ -67,7 +96,6 @@ const AppDetailsPage = () => {
                   </span>
                 </p>
               </div>
-
               <div className="flex gap-8 mt-4 pt-2 border-t md:border-t-0 justify-between sm:justify-start">
                 <div className="text-center">
                   <img
@@ -80,7 +108,6 @@ const AppDetailsPage = () => {
                   </p>
                   <p className="text-sm text-gray-500">Downloads</p>
                 </div>
-
                 <div className="text-center">
                   <img
                     src={starIcon}
@@ -92,7 +119,6 @@ const AppDetailsPage = () => {
                   </p>
                   <p className="text-sm text-gray-500">Avg Ratings</p>
                 </div>
-
                 <div className="text-center">
                   <img
                     src={reviewIcon}
@@ -106,8 +132,16 @@ const AppDetailsPage = () => {
                 </div>
               </div>
 
-              <button className="btn mt-6 w-fit bg-gradient-to-r from-[#632ee3] to-[#9f62f2] hover:from-[#9f62f2] hover:to-[#632ee3] text-white font-semibold py-2 px-6 rounded-lg shadow-lg flex items-center gap-2 transition ease-in-out duration-300">
-                Install Now ({app.size} MB)
+              <button
+                onClick={handleInstall}
+                disabled={isInstalled}
+                className={`btn mt-6 w-fit text-white font-semibold py-2 px-6 rounded-lg shadow-lg flex items-center gap-2 transition ease-in-out duration-300 ${
+                  isInstalled
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-gradient-to-r from-[#632ee3] to-[#9f62f2] hover:from-[#9f62f2] hover:to-[#632ee3]"
+                }`}
+              >
+                {isInstalled ? "Installed" : `Install Now (${app.size} MB)`}
               </button>
             </div>
           </header>
@@ -116,49 +150,52 @@ const AppDetailsPage = () => {
             <h2 className="text-xl font-semibold text-gray-800 mb-4">
               Ratings
             </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="col-span-2">
-                <div className="flex flex-col space-y-4">
-                  {processedRatings.map((rating) => (
-                    <div key={rating.name} className="flex items-center gap-3">
-                      <span className="w-12 text-sm text-gray-600 text-right">
-                        {rating.name.split(" ")[0]} star
-                      </span>
-
-                      <div className="flex-1 h-5">
-                        {" "}
-                        <div
-                          className="h-5 bg-orange-500 transition-all duration-500 ease-out"
-                          style={{
-                            width: calculateBarWidth(
-                              rating.count,
-                              maxRatingCount
-                            ),
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-4 ml-[60px] flex justify-between text-xs text-gray-500">
-                  <span>0</span>
-                  <span>3000</span>
-                  <span>6000</span>
-                  <span>9000</span>
-                  <span>12000</span>
-                </div>
-              </div>
+            <div style={{ width: "100%", height: 250, paddingRight: 20 }}>
+              <ResponsiveContainer>
+                <BarChart
+                  layout="vertical"
+                  data={chartData}
+                  margin={{ top: 0, right: 30, left: 20, bottom: 20 }}
+                >
+                  <YAxis
+                    dataKey="name"
+                    type="category"
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{ fill: "#6B7280", fontSize: 13 }}
+                    width={60}
+                  />
+                  <XAxis
+                    type="number"
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{ fill: "#6B7280", fontSize: 12 }}
+                    domain={[0, 12000]}
+                    ticks={[0, 3000, 6000, 9000, 12000]}
+                    interval="preserveStartEnd"
+                  />
+                  <Tooltip
+                    cursor={{ fill: "transparent" }}
+                    formatter={(value) => [
+                      new Intl.NumberFormat().format(value),
+                      "Reviews",
+                    ]}
+                  />
+                  <Bar
+                    dataKey="count"
+                    fill="#FF8C00"
+                    barSize={15}
+                    radius={[0, 10, 10, 0]}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
             </div>
           </section>
 
-          {/* --- Description Section --- */}
           <section className="py-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
               Description
             </h2>
-
             <p className="text-gray-700 leading-relaxed mb-6">
               {app.description}
             </p>

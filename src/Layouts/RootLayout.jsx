@@ -2,6 +2,7 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Outlet } from "react-router";
 import Container from "../Components/Container";
+import { Toaster } from "react-hot-toast";
 
 const RootLayout = () => {
   return (
@@ -10,6 +11,7 @@ const RootLayout = () => {
       <div className="flex-1">
         <Outlet />
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
       <Footer />
     </div>
   );
