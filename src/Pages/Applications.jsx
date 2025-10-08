@@ -5,51 +5,39 @@ import NotFound from "../Components/NotFound";
 import Spinner from "../Components/LoadingSpinner";
 
 const AllApps = () => {
-  // useApp হুক থেকে প্রাথমিক ডেটা এবং পেজ লোডিং স্টেট আনা হচ্ছে
   const { apps: initialApps, loading: pageLoading, error } = useApp();
-  
-  // কম্পোনেন্টের জন্য প্রয়োজনীয় স্টেটগুলো
+
   const [search, setSearch] = useState("");
   const [filteredApps, setFilteredApps] = useState([]);
   const [isSearching, setIsSearching] = useState(false); // সার্চের জন্য লোডিং স্টেট
 
-  // initialApps লোড হওয়ার পর filteredApps স্টেটকে সেট করা হচ্ছে
   useEffect(() => {
     if (initialApps) {
       setFilteredApps(initialApps);
     }
   }, [initialApps]);
 
-  // সার্চ ইনপুটের পরিবর্তনের উপর ভিত্তি করে অ্যাপ ফিল্টার করার জন্য
   useEffect(() => {
     const term = search.trim().toLowerCase();
-
-    // যদি সার্চ ইনপুট খালি থাকে, তাহলে সব অ্যাপ দেখাও এবং আর কিছু করো না
     if (!term) {
       setFilteredApps(initialApps || []);
       return;
     }
 
-    // সার্চ শুরু হওয়ার আগে লোডিং স্টেট true করা
     setIsSearching(true);
 
-    // একটি কাল্পনিক API কলের ডিলে সিমুলেট করার জন্য setTimeout ব্যবহার করা হচ্ছে
-    // বাস্তবে এখানে debounce ফাংশন ব্যবহার করা উচিত
     const searchTimeout = setTimeout(() => {
       const result = initialApps.filter((app) =>
         app.title.toLowerCase().includes(term)
       );
       setFilteredApps(result);
-      setIsSearching(false); // সার্চ শেষ হলে লোডিং স্টেট false করা
-    }, 500); // 500ms ডিলে
+      setIsSearching(false);
+    }, 500);
 
-    // কম্পোনেন্ট আনমাউন্ট বা সার্চ টার্ম পরিবর্তন হলে আগের таймout ক্লিয়ার করা
     return () => clearTimeout(searchTimeout);
   }, [search, initialApps]);
 
-  // প্রাথমিক পেজ লোডিং অবস্থা হ্যান্ডেল করা
   if (pageLoading) {
-    // এখানে আপনি একটি বড় স্পিনার বা স্কেলেটন UI দেখাতে পারেন
     return (
       <div className="flex justify-center items-center h-screen">
         <p className="text-2xl font-bold">Loading Applications...</p>
@@ -57,7 +45,6 @@ const AllApps = () => {
     );
   }
 
-  // ডেটা লোড করার সময় এরর হলে তা দেখানো
   if (error) {
     return (
       <div className="text-center py-20 text-red-500">
@@ -105,7 +92,6 @@ const AllApps = () => {
         </label>
       </div>
 
-      {/* সার্চ চলাকালীন স্পিনার দেখানো */}
       {isSearching ? (
         <div className="flex justify-center items-center h-64">
           <Spinner />
