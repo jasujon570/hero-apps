@@ -11,7 +11,7 @@ const AppsDataCard = ({ app }) => {
       to={`/app-details/${id}`}
       className="bg-white border border-gray-200 rounded-lg shadow-md p-4 flex justify-between flex-col gap-3 hover:scale-105 transition ease-in-out"
     >
-      <figure className="aspect-[3/4] overflow-hidden ">
+      <figure className="aspect-square overflow-hidden ">
         <img
           className="w-full h-full rounded-lg object-cover"
           src={image}
