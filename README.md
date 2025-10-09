@@ -6,14 +6,11 @@ It allows users to **browse applications**, **view detailed information**, and *
 ---
 
 ## 🔴 Live Demo
-👉 [View Live Demo](#) *(Add your deployment link here)*
+👉 [View Live Demo](#) *(https://my-hero-io-app.netlify.app/)*
 
 ---
 
-## 📸 Project Preview
-*(Add a screenshot or GIF of your running application here)*  
-Example:  
-![App Screenshot](./screenshot.png)
+
 
 ---
 
@@ -86,7 +83,7 @@ Follow these steps to set up the project locally.
 
 5. **Open in browser**
 
-   Visit 👉 [http://localhost:5173](http://localhost:5173)
+   Visit 👉 [https://my-hero-io-app.netlify.app/]
 
 ---
 
