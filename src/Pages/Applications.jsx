@@ -21,6 +21,7 @@ const AllApps = () => {
     const term = search.trim().toLowerCase();
     if (!term) {
       setFilteredApps(initialApps || []);
+      setIsSearching(false);
       return;
     }
 

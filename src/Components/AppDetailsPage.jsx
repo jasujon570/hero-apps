@@ -63,7 +63,6 @@ const { app } = useLoaderData();
 
   const [isInstalled, setIsInstalled] = useState(false);
 
-  // কম্পোনেন্ট লোড হওয়ার সময় চেক করবে অ্যাপটি আগে থেকেই ইনস্টল করা আছে কিনা
   useEffect(() => {
     const installedIds = getInstalledAppIds();
     if (installedIds.includes(id)) {
