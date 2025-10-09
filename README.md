@@ -6,7 +6,7 @@ It allows users to **browse applications**, **view detailed information**, and *
 ---
 
 ## 🔴 Live Demo
-👉 [View Live Demo](#) *(https://my-hero-io-app.netlify.app/)*
+👉 [View Live Demo](#) *(https://appdock.netlify.app/)*
 
 ---
 
@@ -83,7 +83,7 @@ Follow these steps to set up the project locally.
 
 5. **Open in browser**
 
-   Visit 👉 [https://my-hero-io-app.netlify.app/]
+   Visit 👉 [https://appdock.netlify.app/]
 
 ---
 
