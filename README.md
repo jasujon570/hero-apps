@@ -87,14 +87,8 @@ Follow these steps to set up the project locally.
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License**.  
-See the [LICENSE.md](./LICENSE.md) file for details.
-
----
 
 ## 💡 Author
 
-Developed with ❤️ by **[Your Name](https://github.com/your-username)**  
+Developed with ❤️ by **[Your Name](https://github.com/jasujon570)**  
 Feel free to ⭐ the repo if you find it helpful!
