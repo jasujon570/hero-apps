@@ -90,5 +90,5 @@ Follow these steps to set up the project locally.
 
 ## 💡 Author
 
-Developed with ❤️ by **[Your Name](https://github.com/jasujon570)**  
+Developed with ❤️ by **[Md. Jahangir Alam Sujon](https://github.com/jasujon570)**  
 Feel free to ⭐ the repo if you find it helpful!
