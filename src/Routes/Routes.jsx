@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import Home from "../Pages/Home";
 import Applications from "../Pages/Applications";
 import RootLayout from "../Layouts/RootLayout";
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "/apps",
@@ -24,10 +24,21 @@ const router = createBrowserRouter([
       {
         path: "/app-details/:id",
         element: <AppDetailsPage />,
-        loader: () => fetch("./appsData.json"),
+        loader: async ({ params }) => {
+          const res = await fetch("/appsData.json");
+          const apps = await res.json();
+          const app = apps.find((app) => app.id === parseInt(params.id));
+          if (!app) {
+            throw new Response("App Not Found", {
+              status: 404,
+              statusText: "The app you are looking for does not exist.",
+            });
+          }
+          return { app };
+        },
       },
       {
-        path: "installedapps",
+        path: "/installedapps",
         element: <InstalledApps />,
       },
     ],

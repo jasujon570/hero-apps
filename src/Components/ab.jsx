@@ -77,6 +77,13 @@ const handleInstall = () => {
     toast.success(`${title} has been installed successfully!`);
   };
 
+  if (!app) {
+    return (
+      <div className="text-center py-20 text-xl font-bold">
+        <ErrorPage />
+      </div>
+    );
+  }
 
   const chartData = processRatingsForChart(ratings);
   const totalReviews = reviews;
@@ -89,7 +96,7 @@ const handleInstall = () => {
             <img
               src={image}
               alt={title}
-              className="w-48 h-48 rounded-3xl object-cover shadow-lg mx-auto"
+              className="w-48 h-48 rounded-3xl object-cover shadow-lg"
             />
             <div className="flex-1">
               <div className="border-b">
@@ -103,7 +110,7 @@ const handleInstall = () => {
                   </span>
                 </p>
               </div>
-              <div className="flex gap-8 mt-4 pt-2 md:border-t-0 justify-between sm:justify-start">
+              <div className="flex gap-8 mt-4 pt-2 border-t md:border-t-0 justify-between sm:justify-start">
                 <div className="text-center">
                   <img
                     src={downloadIcon}

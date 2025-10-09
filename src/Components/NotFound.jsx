@@ -1,23 +1,16 @@
+import appError from "../assets/App-Error.png";
+import { Link } from "react-router-dom";
 
-import appError from '../assets/App-Error.png'
-import { Link } from 'react-router-dom';
-
-const NotFound = ({onGoBack}) => {
+const NotFound = ({ onGoBack }) => {
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
-      {/* নিচের ইমেজটি আপনার নিজের ইমেজ দিয়ে পরিবর্তন করে নিন।
-        যদি আপনার কাছে SVG ফাইল না থাকে, তাহলে PNG ফাইল ব্যবহার করতে পারেন।
-      */}
-      <img 
-        src={appError} 
-        alt="App Not Found" 
-        className="w-64 h-auto mb-8"
-      />
+      <img src={appError} alt="App Not Found" className="w-64 h-auto mb-8" />
       <h2 className="text-4xl font-bold text-gray-800 mb-2">
         OPPS!! APP NOT FOUND
       </h2>
       <p className="text-lg text-gray-500 mb-6">
-        The App you are requesting is not found on our system. please try another apps
+        The App you are requesting is not found on our system. please try
+        another apps
       </p>
       <button
         onClick={onGoBack}
