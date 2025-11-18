@@ -5,15 +5,6 @@ It allows users to **browse applications**, **view detailed information**, and *
 
 ---
 
-## 🔴 Live Demo
-👉 [View Live Demo](#) *(https://appdock.netlify.app/)*
-
----
-
-
-
----
-
 ## ✨ Key Features
 
 - **Browse & Search** – Easily browse all available applications with real-time search.
